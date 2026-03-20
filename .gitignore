@@ -1,0 +1,12 @@
+# Ignore these filenames everywhere.
+*~
+compile_commands.json
+
+# Build directories
+/build/
+/dist/
+
+# Ignore Visual Studio/Visual Studio Code workspace files.
+.vs/
+.vscode/
+*.user
