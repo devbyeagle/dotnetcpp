@@ -1,7 +1,0 @@
-file(GLOB_RECURSE DOTNETCPP_RUNTIME_SOURCES CONFIGURE_DEPENDS "${CMAKE_CURRENT_SOURCE_DIR}/*.cpp")
-
-add_library(System.Runtime ${DOTNETCPP_RUNTIME_SOURCES})
-
-set_target_properties(System.Runtime PROPERTIES
-    PREFIX ""
-)

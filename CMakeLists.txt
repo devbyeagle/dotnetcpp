@@ -32,7 +32,7 @@ include_directories(BEFORE
   )
 
 # Include only necessary subdirectories.
-add_subdirectory(src/runtime)
+add_subdirectory(src/runtime/src/libraries)
 
 if(DOTNETCPP_INCLUDE_TESTS)
   add_subdirectory(tests)

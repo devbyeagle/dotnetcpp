@@ -1,6 +1,7 @@
-#include <iostream>
-#include <dotnetcpp/System/WeakReference.h>
+// #include <iostream>
+#include <dotnetcpp/System/Buffer.h>
 
 int main(void)
 {
+    
 }
