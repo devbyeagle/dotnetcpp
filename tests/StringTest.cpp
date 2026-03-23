@@ -1,7 +1,18 @@
 #include <iostream>
-#include <dotnetcpp/System/UIntPtr.h>
+
+#include <dotnetcpp/System/Buffer.h>
+#include <dotnetcpp/System/Nullable.h>
+
+using namespace System;
+
+void Alloc(Nullable<int> value1, Nullable<int> value2)
+{
+}
 
 int main(void)
 {
-    System::UIntPtr Handle = System::UIntPtr()
+    Nullable<int> i(172);
+    Nullable<int> i2(0);
+
+    if (i == i2)
 }

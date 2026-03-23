@@ -2,7 +2,7 @@
 
 namespace System
 {
-    struct UInt32
+    class Buffer
     {
 
     };
