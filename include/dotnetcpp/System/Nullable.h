@@ -1,32 +1,62 @@
 #pragma once
 
-#include <type_traits>
 #include <stdexcept>
+#include <type_traits>
 
 namespace System
 {
     template<typename T>
     struct Nullable
     {
-        static_assert(std::is_arithmetic_v<T> || std::is_trivial_v<T>, "T must be a value type");
+        static_assert(std::is_scalar_v<T> || std::is_class_v<T>, "T must be a primitive or struct");
     private:
-        const bool hasValue;
+        bool hasValue;
         T value;
     public:
-        Nullable() : hasValue(false) {}
-        Nullable(std::nullptr_t) : Nullable() {}
-        Nullable(T value) : value(value), hasValue(true) {}
+        constexpr Nullable() noexcept = default;
+        constexpr Nullable(std::nullptr_t) noexcept { }
 
-        bool HasValue() const { return hasValue; }
-        T Value() const 
-        { 
-            if (!hasValue) throw std::runtime_error("Nullable object must have a value.");
+        Nullable(const T& value)
+        {
+            this->value = value;
+            hasValue = true;
+        }
+
+        constexpr bool HasValue() const noexcept
+        {
+            return hasValue;
+        }
+
+        T& Value()
+        {
+            if (!hasValue)
+                throw std::runtime_error("Nullable object has no value");
             return value;
         }
 
-        T GetValueOrDefault() const { return value; }
-        T GetValueOrDefault(T defaultValue) const { return hasValue ? value : defaultValue; }
+        const T& Value() const
+        {
+            if (!hasValue)
+                throw std::runtime_error("Nullable object has no value");
+            return value;
+        }
+
+        constexpr T GetValueOrDefault(const T& defaultValue) const
+        {
+            return hasValue ? value : defaultValue;
+        }
 
         explicit operator T() const { return Value(); }
+
+        friend bool operator==(const Nullable& n1, const Nullable& n2)
+        {
+            if (n1.HasValue())
+            {
+                if (n2.HasValue()) return n1.Value() == n2.Value();
+                return false;
+            }
+            if (n2.HasValue()) return false;
+            return true;
+        }
     };
 }

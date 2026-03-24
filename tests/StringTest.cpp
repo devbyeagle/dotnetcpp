@@ -6,5 +6,4 @@ using namespace System;
 
 int main(void)
 {
-    byte i;
 }
