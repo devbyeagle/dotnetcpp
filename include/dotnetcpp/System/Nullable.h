@@ -1,6 +1,5 @@
 #pragma once
 
-#include <stdexcept>
 #include <type_traits>
 
 namespace System
@@ -8,55 +7,24 @@ namespace System
     template<typename T>
     struct Nullable
     {
-        static_assert(std::is_scalar_v<T> || std::is_class_v<T>, "T must be a primitive or struct");
+        static_assert(std::is_trivially_copyable<T>::value, "T must be a value type");
     private:
         bool hasValue;
         T value;
     public:
-        constexpr Nullable() noexcept = default;
+        constexpr Nullable() noexcept { }
         constexpr Nullable(std::nullptr_t) noexcept { }
 
-        Nullable(const T& value)
-        {
-            this->value = value;
-            hasValue = true;
-        }
+        template<typename U = typename std::remove_cv<T>::type>
+        constexpr Nullable(U&& value);
 
-        constexpr bool HasValue() const noexcept
-        {
-            return hasValue;
-        }
+        constexpr bool HasValue() const noexcept;
+        const T& Value() const;
 
-        T& Value()
-        {
-            if (!hasValue)
-                throw std::runtime_error("Nullable object has no value");
-            return value;
-        }
-
-        const T& Value() const
-        {
-            if (!hasValue)
-                throw std::runtime_error("Nullable object has no value");
-            return value;
-        }
-
-        constexpr T GetValueOrDefault(const T& defaultValue) const
-        {
-            return hasValue ? value : defaultValue;
-        }
+        constexpr T GetValueOrDefault() const;
+        constexpr T GetValueOrDefault(const T& defaultValue) const;
 
         explicit operator T() const { return Value(); }
-
-        friend bool operator==(const Nullable& n1, const Nullable& n2)
-        {
-            if (n1.HasValue())
-            {
-                if (n2.HasValue()) return n1.Value() == n2.Value();
-                return false;
-            }
-            if (n2.HasValue()) return false;
-            return true;
-        }
+        friend bool operator==(const Nullable& n1, const Nullable& n2);
     };
 }
