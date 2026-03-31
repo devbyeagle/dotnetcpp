@@ -3,10 +3,12 @@
 #include <type_traits>
 #include <utility>
 
+#include "Object.h"
+
 namespace System
 {    
     template<typename T>
-    struct Nullable
+    struct Nullable : public Object
     {
         static_assert(std::is_trivially_copyable<T>::value, "T must be a value type");
     private:
@@ -31,20 +33,18 @@ namespace System
             return value;
         }
 
+        constexpr const T& Value() const &
+        {
+            if (!hasValue)
+            {
+                throw;
+            }
+            return value;
+        }
+
         constexpr T GetValueOrDefault() const& { return value; }
         constexpr T GetValueOrDefault(T defaultValue) { return hasValue ? value : defaultValue; }
 
         explicit operator T() const { return Value(); }
-
-        friend bool operator==(const Nullable<T>& n1, const Nullable<T>& n2)
-        {
-            if (n1.HasValue())
-            {
-                if (n2.HasValue()) return n1.Value() == n2.Value();
-                return false;
-            }
-            if (n2.HasValue()) return false;
-            return true;
-        }
     };
 }
