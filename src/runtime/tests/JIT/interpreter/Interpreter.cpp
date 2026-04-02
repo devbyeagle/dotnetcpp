@@ -6,7 +6,6 @@ using namespace System;
 
 void RunInterpreterTests()
 {
-    Nullable<int> nullableInt;
 }
 
 int main()
