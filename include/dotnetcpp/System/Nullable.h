@@ -1,6 +1,6 @@
 #pragma once
 
-// Upstream reference: 
+// Upstream reference:
 // https://github.com/dotnet/dotnet/blob/main/src/runtime/src/libraries/System.Private.CoreLib/src/System/Nullable.cs
 
 #include <stdexcept>
@@ -10,7 +10,7 @@
 #include "Object.h"
 
 namespace System
-{   
+{
     template<typename T>
     struct Nullable : public Object
     {
@@ -33,7 +33,7 @@ namespace System
 
         constexpr bool HasValue() const noexcept { return hasValue; }
 
-        constexpr T& Value()& 
+        constexpr T& Value()&
         {
             if (!hasValue)
             {
@@ -50,7 +50,6 @@ namespace System
             if (!hasValue) return other == nullptr;
             if (other == nullptr) return false;
 
-            // Try dynamic cast
             const Nullable<T>* o = dynamic_cast<const Nullable<T>*>(other);
             if (!o || !o->hasValue) return false;
             return value == o->value;

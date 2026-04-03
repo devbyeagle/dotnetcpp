@@ -5,6 +5,8 @@
 
 namespace System
 {
+  class String;
+
   class Object
   {
   public:
@@ -13,7 +15,7 @@ namespace System
 
     /// @brief Returns a string that represents the current object.
     /// @returns A string that represents the current object.
-    virtual const char* ToString() const;
+    virtual String ToString() const;
 
     /// @brief Determines whether the specified object is equal to the current object.
     /// @param obj The object to compare with the current object.
