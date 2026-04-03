@@ -5,8 +5,6 @@
 
 namespace System
 {
-  class String;
-
   class Object
   {
   public:
