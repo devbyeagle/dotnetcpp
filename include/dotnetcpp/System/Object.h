@@ -13,7 +13,7 @@ namespace System
 
     /// @brief Returns a string that represents the current object.
     /// @returns A string that represents the current object.
-    virtual String ToString() const;
+    virtual const char* ToString() const;
 
     /// @brief Determines whether the specified object is equal to the current object.
     /// @param obj The object to compare with the current object.
