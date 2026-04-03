@@ -1,12 +1,11 @@
 #include <typeinfo>
 #include <cstdint>
 
-#include "dotnetcpp/System/String.h"
 #include "dotnetcpp/System/Object.h"
 
 namespace System
 {
-    string Object::ToString() const
+    const char* Object::ToString() const
     {
         return typeid(*this).name();
     }
