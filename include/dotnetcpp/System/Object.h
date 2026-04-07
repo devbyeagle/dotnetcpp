@@ -1,6 +1,6 @@
 #pragma once
 
-// Upstream reference: 
+// Upstream reference:
 // https://github.com/dotnet/runtime/blob/main/src/libraries/System.Private.CoreLib/src/System/Object.cs
 
 #include <string>
@@ -24,11 +24,9 @@ namespace System
     /// @returns `true` if the specified object is equal to the current object; otherwise, `false`.
     virtual bool Equals(const Object* obj) const;
 
-    static bool ReferenceEquals(const Object* objA, const Object* objB);
-
     /// @brief Serves as the default hash function.
-    /// @return A hash code for the current object.
-    virtual int GetHashCode() const; 
+    /// @returns A hash code for the current object.
+    virtual int GetHashCode() const;
   };
 }
 
