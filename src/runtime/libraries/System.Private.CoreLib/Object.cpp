@@ -1,5 +1,4 @@
-#include <cstdint>
-#include <string>
+#include <cstdint>  
 #include <typeinfo>
 
 #include "dotnetcpp/System/Object.h"
