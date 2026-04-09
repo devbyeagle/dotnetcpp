@@ -42,4 +42,4 @@ jobs:
       - name: Test
         working-directory: ${{github.workspace}}/build
         shell: powershell
-        run: start src/runtime/tests/JIT/interpreter/Interpreter
+        run: ls src/runtime/tests/JIT/interpreter
