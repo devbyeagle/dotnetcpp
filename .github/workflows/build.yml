@@ -5,11 +5,13 @@ on:
   push:
     paths:
       - 'src/**'
+      - '.github/workflows/build.yml'
       - 'CMakeList.txt'
       - 'cmake/**'
   pull_request:
     paths:
       - 'src/**'
+      - '.github/workflows/build.yml'
       - 'CMakeList.txt'
       - 'cmake/**'
 
@@ -43,3 +45,31 @@ jobs:
         working-directory: ${{github.workspace}}/build
         shell: powershell
         run: start src/runtime/tests/JIT/interpreter/Release/Interpreter.exe
+  
+  build-linux:
+    name: Linux Build
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Create Build Environment
+        run: cmake -E make_directory ${{github.workspace}}/build
+
+      - name: Setup Environment
+        run: |
+          sudo apt-get update -qq
+      - name: Configure CMake
+        shell: bash
+        working-directory: ${{github.workspace}}/build
+        run: cmake $GITHUB_WORKSPACE -DCMAKE_BUILD_TYPE=$BUILD_TYPE
+      
+      - name: Build
+        working-directory: ${{github.workspace}}/build
+        shell: bash
+        run: cmake --build . --config $BUILD_TYPE
+
+      - name: Test
+        working-directory: ${{github.workspace}}/build
+        shell: bash
+        run: ./src/runtime/tests/JIT/interpreter/Interpreter
