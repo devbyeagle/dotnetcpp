@@ -1,6 +1,7 @@
 name: Build With CMake
 
 on:
+  workflow_dispatch:
   push:
     paths:
       - 'src/**'
