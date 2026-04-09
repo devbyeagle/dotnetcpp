@@ -29,10 +29,6 @@ if(DOTNETCPP_INCLUDE_TESTS)
   add_subdirectory(src/runtime/tests)
 endif()
 
-install(FILES "LICENSE.txt"
-        DESTINATION "share/dotnetcpp"
-        COMPONENT license)
-
 link_targets_by_pattern(dotnetcpp
     PATTERNS
         System
