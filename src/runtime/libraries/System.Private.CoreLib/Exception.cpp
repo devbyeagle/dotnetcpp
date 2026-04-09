@@ -1,5 +1,6 @@
 #include <exception>
 
+#include "dotnetcpp/System/Nullable.h"
 #include "dotnetcpp/System/Exception.h"
 
 namespace System

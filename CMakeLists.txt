@@ -14,10 +14,6 @@ include(GNUInstallDirs)
 
 option(DOTNETCPP_INCLUDE_TESTS "Include test targets in the build." TRUE)
 
-option(BUILD_SHARED_LIBS
-    "Build targets as shared libraries."
-    TRUE)
-
 include_directories(BEFORE
   ${CMAKE_CURRENT_SOURCE_DIR}/include
   )

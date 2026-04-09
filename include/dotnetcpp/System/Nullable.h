@@ -6,6 +6,7 @@
 #include <type_traits>
 
 #include "Object.h"
+#include "ThrowHelper.h"
 
 namespace System
 {
@@ -36,7 +37,7 @@ namespace System
 		{
 			if (!hasValue)
 			{
-				throw Exception("Nullable object must have a value.");
+				ThrowHelper::ThrowInvalidOperationException_InvalidOperation_NoValue();
 			}
 			return value;
 		}
@@ -45,7 +46,7 @@ namespace System
 		{
 			if (!hasValue)
 			{
-				throw Exception("Nullable object must have a value.");
+				ThrowHelper::ThrowInvalidOperationException_InvalidOperation_NoValue();
 			}
 			return value;
 		}
