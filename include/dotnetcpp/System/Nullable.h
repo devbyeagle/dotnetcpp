@@ -7,45 +7,52 @@
 
 #include "Object.h"
 
-namespace System {
-  class Exception;
+namespace System
+{
+	class Exception;
 
-  template <typename T>
-  struct Nullable : public Object {
-    static_assert(std::is_copy_constructible<T>::value, "T must be a value type");
+	template <typename T>
+	struct Nullable : public Object
+	{
+		static_assert(std::is_copy_constructible<T>::value, "T must be a value type");
 
-  private:
-    bool hasValue;
-    T value;
+	private:
+		bool hasValue;
+		T value;
 
-  public:
-    constexpr Nullable() noexcept = default;
-    constexpr Nullable(std::nullptr_t) noexcept {}
+	public:
+		constexpr Nullable() noexcept = default;
+		constexpr Nullable(std::nullptr_t) noexcept {}
 
-    constexpr Nullable(const T& value) noexcept(std::is_nothrow_constructible<T, const T&>::value) {
-      this->value = value;
-      hasValue = true;
-    }
+		constexpr Nullable(const T& value) noexcept(std::is_nothrow_constructible<T, const T&>::value)
+		{
+			this->value = value;
+			hasValue = true;
+		}
 
-    constexpr bool HasValue() const noexcept { return hasValue; }
+		constexpr bool HasValue() const noexcept { return hasValue; }
 
-    constexpr T& Value() & {
-      if (!hasValue) {
-        throw Exception("Nullable object must have a value.");
-      }
-      return value;
-    }
+		constexpr T& Value() &
+		{
+			if (!hasValue)
+			{
+				throw Exception("Nullable object must have a value.");
+			}
+			return value;
+		}
 
-    constexpr const T& Value() const& {
-      if (!hasValue) {
-        throw Exception("Nullable object must have a value.");
-      }
-      return value;
-    }
+		constexpr const T& Value() const&
+		{
+			if (!hasValue)
+			{
+				throw Exception("Nullable object must have a value.");
+			}
+			return value;
+		}
 
-    constexpr T GetValueOrDefault() const& { return value; }
-    constexpr T GetValueOrDefault(const T& defaultValue) const& { return hasValue ? value : defaultValue; }
+		constexpr T GetValueOrDefault() const& { return value; }
+		constexpr T GetValueOrDefault(const T& defaultValue) const& { return hasValue ? value : defaultValue; }
 
-    explicit operator T() const { return Value(); }
-  };
+		explicit operator T() const { return Value(); }
+	};
 } // namespace System
