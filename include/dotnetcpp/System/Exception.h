@@ -1,5 +1,8 @@
 #pragma once
 
+// Upstream reference:
+// https://github.com/dotnet/runtime/blob/main/src/libraries/System.Private.CoreLib/src/System/Exception.cs
+
 #include "Nullable.h"
 #include "Object.h"
 
