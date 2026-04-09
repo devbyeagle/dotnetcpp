@@ -5,10 +5,8 @@
 
 #include <string>
 
-namespace System
-{
-  class Object
-  {
+namespace System {
+  class Object {
   public:
     // Creates a new instance of an Object.
     Object() = default;
@@ -28,6 +26,6 @@ namespace System
     /// @returns A hash code for the current object.
     virtual int GetHashCode() const;
   };
-}
+} // namespace System
 
 using object = System::Object;

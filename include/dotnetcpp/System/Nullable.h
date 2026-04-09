@@ -3,46 +3,49 @@
 // Upstream reference:
 // https://github.com/dotnet/runtime/blob/main/src/libraries/System.Private.CoreLib/src/System/Nullable.cs
 
-#include <stdexcept>
 #include <type_traits>
 
 #include "Object.h"
 
-namespace System
-{
-    template <typename T>
-    struct Nullable : public Object
-    {
-        static_assert(std::is_copy_constructible<T>::value, "T must be a value type");
+namespace System {
+  class Exception;
 
-    private:
-        bool hasValue;
-        T value;
+  template <typename T>
+  struct Nullable : public Object {
+    static_assert(std::is_copy_constructible<T>::value, "T must be a value type");
 
-    public:
-        constexpr Nullable() noexcept = default;
-        constexpr Nullable(std::nullptr_t) noexcept {}
+  private:
+    bool hasValue;
+    T value;
 
-        constexpr Nullable(const T& value) noexcept(std::is_nothrow_constructible_v<T, const T&>)
-        {
-            this->value = value;
-            hasValue = true;
-        }
+  public:
+    constexpr Nullable() noexcept = default;
+    constexpr Nullable(std::nullptr_t) noexcept {}
 
-        constexpr bool HasValue() const noexcept { return hasValue; }
+    constexpr Nullable(const T& value) noexcept(std::is_nothrow_constructible<T, const T&>::value) {
+      this->value = value;
+      hasValue = true;
+    }
 
-        constexpr T& Value()&
-        {
-            if (!hasValue)
-            {
-                throw std::runtime_error();
-            }
-            return value;
-        }
+    constexpr bool HasValue() const noexcept { return hasValue; }
 
-        constexpr T GetValueOrDefault() const& { return value; }
-        constexpr T GetValueOrDefault(const T& defaultValue) const& { return hasValue ? value : defaultValue; }
+    constexpr T& Value() & {
+      if (!hasValue) {
+        throw Exception("Nullable object must have a value.");
+      }
+      return value;
+    }
 
-        explicit operator T() const { return Value(); }
-    };
-}
+    constexpr const T& Value() const& {
+      if (!hasValue) {
+        throw Exception("Nullable object must have a value.");
+      }
+      return value;
+    }
+
+    constexpr T GetValueOrDefault() const& { return value; }
+    constexpr T GetValueOrDefault(const T& defaultValue) const& { return hasValue ? value : defaultValue; }
+
+    explicit operator T() const { return Value(); }
+  };
+} // namespace System
