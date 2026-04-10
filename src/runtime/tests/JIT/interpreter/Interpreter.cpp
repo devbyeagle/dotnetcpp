@@ -6,15 +6,7 @@ using namespace System;
 
 void RunInterpreterTests()
 {
-	Nullable<int> i;
-	try
-	{
-		std::cout << i.Value();
-	}
-	catch(const Exception& e)
-	{
-		std::cerr << e.what() << '\n';
-	}
+	throw Exception("Hello, World");
 }
 
 int main()

@@ -3,7 +3,7 @@
 // Upstream reference:
 // https://github.com/dotnet/runtime/blob/main/src/libraries/System.Private.CoreLib/src/System/Exception.cs
 
-#include "Nullable.h"
+#include "Object.h"
 
 namespace System
 {
@@ -12,11 +12,11 @@ namespace System
 		  public std::exception
 	{
 	protected:
-		Nullable<std::string> _message;
+		std::string _message;
 
 	public:
 		Exception() = default;
-		Exception(Nullable<const char*> message);
+		Exception(const std::string& message);
 
 		const char* what() const noexcept override;
 	};
