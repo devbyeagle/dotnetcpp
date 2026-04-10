@@ -44,7 +44,7 @@ jobs:
       - name: Test
         working-directory: ${{github.workspace}}/build
         shell: powershell
-        run: start src/runtime/tests/JIT/interpreter/Release/Interpreter.exe
+        run: .\src\runtime\tests\JIT\interpreter\Release\Interpreter.exe
   
   build-linux:
     name: Linux Build
