@@ -6,7 +6,7 @@ list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/cmake")
 # Use C++17.
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED YES)
-#set(CMAKE_CXX_EXTENSIONS NO)
+set(CMAKE_CXX_EXTENSIONS NO)
 
 # Include common CMake utilities first.
 include(Utils)
