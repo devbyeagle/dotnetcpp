@@ -18,8 +18,8 @@ namespace System
 		static_assert(std::is_copy_constructible<T>::value, "T must be a value type");
 
 	private:
-		bool hasValue;
-		T value;
+		bool hasValue = false;
+		T value{};
 
 	public:
 		constexpr Nullable() noexcept = default;
