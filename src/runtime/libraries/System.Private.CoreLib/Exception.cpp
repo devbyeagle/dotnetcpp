@@ -12,6 +12,10 @@ namespace System
 
 	const char* Exception::what() const noexcept
 	{
+#if _WIN32
+		return _message.Value().c_str();
+#else
 		return _message.HasValue() ? _message.Value().c_str() : "";
+#endif
 	}
 } // namespace System
