@@ -15,7 +15,6 @@ void RunInterpreterTests()
 	{
 		std::cerr << e.what() << '\n';
 	}
-	
 }
 
 int main()
