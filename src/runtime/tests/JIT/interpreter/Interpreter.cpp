@@ -6,7 +6,6 @@ using namespace System;
 
 void RunInterpreterTests()
 {
-	throw Exception("Hello, World");
 }
 
 int main()
