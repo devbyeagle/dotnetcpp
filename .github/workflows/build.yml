@@ -4,6 +4,7 @@ on:
   workflow_dispatch:
   push:
     paths:
+      - 'include/**'
       - 'src/**'
       - '.github/workflows/build.yml'
       - 'CMakeList.txt'
