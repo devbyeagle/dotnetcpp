@@ -12,6 +12,10 @@ set(CMAKE_CXX_EXTENSIONS NO)
 include(Utils)
 include(GNUInstallDirs)
 
+option(BUILD_SHARED_LIBS
+    "Build shared libraries"
+    TRUE)
+
 option(DOTNETCPP_INCLUDE_TESTS "Include test targets in the build." TRUE)
 
 if(CMAKE_CXX_COMPILER_ID MATCHES Clang)
