@@ -11,5 +11,5 @@ void RunInterpreterTests()
 int main()
 {
 	RunInterpreterTests();
-	return 100;
+	return 0;
 }
