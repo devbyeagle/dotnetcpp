@@ -1,2 +1,0 @@
-add_executable(Interpreter Interpreter.cpp)
-target_link_libraries(Interpreter dotnetcpp)

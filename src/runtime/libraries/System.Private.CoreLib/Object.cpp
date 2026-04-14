@@ -13,4 +13,4 @@ namespace System
 	{
 		return this == obj;
 	}
-}
+} // namespace System

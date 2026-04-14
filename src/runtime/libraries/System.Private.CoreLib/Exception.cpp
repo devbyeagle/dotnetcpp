@@ -9,8 +9,8 @@ namespace System
 		_message = message;
 	}
 
-    const char* Exception::what() const noexcept
-    {
-        return _message.c_str();
-    }
-}
+	const char* Exception::what() const noexcept
+	{
+		return _message.c_str();
+	}
+} // namespace System

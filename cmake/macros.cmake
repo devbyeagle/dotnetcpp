@@ -1,0 +1,45 @@
+function(link_project_libraries TARGET)
+    cmake_parse_arguments(PARSE "" "" "PATTERNS;LIBRARIES" ${ARGN})
+    
+    if(NOT TARGET ${TARGET})
+        add_library(${TARGET} INTERFACE)
+    endif()
+
+    # Collect all targets in the project
+    set(ALL_DIRS ".")
+    set(ALL_TARGETS "")
+    set(INDEX 0)
+
+    while(TRUE)
+      list(LENGTH ALL_DIRS DIR_COUNT)
+      if(NOT INDEX LESS DIR_COUNT)
+          break()
+      endif()
+
+      list(GET ALL_DIRS ${INDEX} CURRENT_DIR)
+      get_property(DIR_TARGETS DIRECTORY "${CURRENT_DIR}" PROPERTY BUILDSYSTEM_TARGETS)
+      list(APPEND ALL_TARGETS ${DIR_TARGETS})
+      get_property(SUB_DIRS DIRECTORY "${CURRENT_DIR}" PROPERTY SUBDIRECTORIES)
+      list(APPEND ALL_DIRS ${SUB_DIRS})
+      math(EXPR INDEX "${INDEX} + 1")
+    endwhile()
+
+    foreach(tgt IN LISTS ALL_TARGETS)
+        if(tgt STREQUAL INTERFACE_LIB)
+            continue()
+        endif()
+
+        get_target_property(type ${tgt} TYPE)
+        if(type STREQUAL "EXECUTABLE")
+            continue()
+        endif()
+
+        foreach(p IN LISTS PARSE_PATTERNS)
+            if(tgt MATCHES "^${p}.*")
+                message(STATUS "[${TARGET}] Auto-linked: ${tgt}")
+                target_link_libraries(${TARGET} INTERFACE ${tgt})
+                break()
+            endif()
+        endforeach()
+    endforeach()
+endfunction()

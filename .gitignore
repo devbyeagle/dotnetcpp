@@ -1,11 +1,14 @@
 # Ignore these filenames everywhere.
 *~
-compile_commands.json
 
 # Build directories
-/build/
-/dist/
+build/
+[Oo]bj/
+
+# Ignore files and folders that JetBrains IDEs create.
+.idea/
 
 # Ignore Visual Studio/Visual Studio Code workspace files.
 .vs/
+.vscode/
 *.user
