@@ -46,7 +46,7 @@ jobs:
       - name: Test
         working-directory: ${{github.workspace}}/build
         shell: powershell
-        run: .\src\runtime\tests\JIT\interpreter\Release\Interpreter.exe
+        run: ctest -C $env:BUILD_TYPE
   
   build-linux:
     name: Linux Build
@@ -74,4 +74,4 @@ jobs:
       - name: Test
         working-directory: ${{github.workspace}}/build
         shell: bash
-        run: ./src/runtime/tests/JIT/interpreter/Interpreter
+        run: ctest -C $env:BUILD_TYPE

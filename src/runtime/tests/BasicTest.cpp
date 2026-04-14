@@ -1,10 +1,10 @@
 #include <iostream>
 
-#include <dotnetcpp/System/Object.h>
+#include <dotnetcpp/System/Exception.h>
+
+using namespace System;
 
 int main()
 {
-	object o = object();
-	std::cout << o.ToString();
 	return 0;
 }
