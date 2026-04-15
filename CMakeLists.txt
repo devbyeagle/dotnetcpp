@@ -21,8 +21,6 @@ option(DOTNETCPP_INCLUDE_TESTS "Include test targets in the build." TRUE)
 if (NOT CMAKE_BUILD_TYPE AND NOT CMAKE_CONFIGURATION_TYPES)
 endif()
 
-include(CompilerFlags)
-
 include_directories(BEFORE
   "${CMAKE_CURRENT_SOURCE_DIR}/include"
   )

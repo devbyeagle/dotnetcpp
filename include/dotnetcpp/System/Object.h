@@ -1,7 +1,8 @@
-#pragma once
-
 // Upstream reference:
 // https://github.com/dotnet/runtime/blob/main/src/libraries/System.Private.CoreLib/src/System/Object.cs
+
+#ifndef _OBJECT_H_
+#define _OBJECT_H_
 
 #include <string>
 
@@ -11,9 +12,13 @@ namespace System
 	{
 	public:
 		// Creates a new instance of an Object.
-		Object() = default;
+		Object()
+		{
+		}
 
-		virtual ~Object() = default;
+		virtual ~Object()
+		{
+		}
 
 		/// @brief Returns a string that represents the current object.
 		/// @returns A string that represents the current object.
@@ -27,3 +32,5 @@ namespace System
 } // namespace System
 
 using object = System::Object;
+
+#endif
