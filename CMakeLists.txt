@@ -38,3 +38,5 @@ link_project_libraries(dotnetcpp
     PATTERNS
         System
 )
+
+enable_testing()
