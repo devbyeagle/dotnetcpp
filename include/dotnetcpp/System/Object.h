@@ -33,4 +33,4 @@ namespace System
 
 using object = System::Object;
 
-#endif
+#endif // _OBJECT_H_

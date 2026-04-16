@@ -32,9 +32,11 @@ if(DOTNETCPP_INCLUDE_TESTS)
   add_subdirectory(src/runtime/tests)
 endif()
 
+set(CMAKE_INCLUDE_CURRENT_DIR ON)
+
 link_project_libraries(dotnetcpp
-    PATTERNS
-        System
+  PATTERNS
+    System
 )
 
 enable_testing()
