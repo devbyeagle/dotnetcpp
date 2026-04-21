@@ -15,8 +15,8 @@ namespace System
 		std::string _message;
 
 	public:
-		Exception() = default;
-		Exception(const std::string& message);
+		Exception() noexcept = default;
+		explicit Exception(const std::string& message) noexcept;
 
 		const char* what() const noexcept override;
 	};
