@@ -1,6 +1,8 @@
 cmake_minimum_required(VERSION 3.19)
 project(dotnetcpp LANGUAGES CXX VERSION "1.0.0")
 
+set_property(GLOBAL PROPERTY USE_FOLDERS ON)
+
 list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/cmake")
 
 # Use C++17.
