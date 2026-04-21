@@ -21,6 +21,8 @@ option(DOTNETCPP_INCLUDE_TESTS "Include test targets in the build." TRUE)
 if (NOT CMAKE_BUILD_TYPE AND NOT CMAKE_CONFIGURATION_TYPES)
 endif()
 
+set(CMAKE_INCLUDE_CURRENT_DIR ON)
+
 include_directories(BEFORE
   "${CMAKE_CURRENT_SOURCE_DIR}/include"
   )
@@ -31,8 +33,6 @@ add_subdirectory(src/runtime)
 if(DOTNETCPP_INCLUDE_TESTS)
   add_subdirectory(src/runtime/tests)
 endif()
-
-set(CMAKE_INCLUDE_CURRENT_DIR ON)
 
 link_project_libraries(dotnetcpp
   PATTERNS
